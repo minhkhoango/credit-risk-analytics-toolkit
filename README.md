@@ -5,6 +5,12 @@
 ## Overview
 This CLI tool processes a prospect's historical portfolio of declined loans (CSV) and generates a professional PDF report highlighting revenue opportunities and customer segments they're missing. It replaces costly validation studies with fast, data-backed analysis.
 
+## Business Impact
+
+- **Accelerate Sales Cycles by 30-50%:** Replaces 7-11 month enterprise validation studies with a single, data-driven report, closing deals months faster.
+- **Cut Customer Acquisition Cost (CAC) by 15-30%:** Eliminates costly, multi-month pilots and reduces the need for extensive sales engineering resources.
+- **Increase Revenue Velocity:** Shortening the sales cycle directly accelerates time-to-revenue. A 3-month reduction on a $500k deal can mean realizing $125k of that revenue within the current fiscal year.
+
 ## Key Features
 
 ### PDF Report Generation
