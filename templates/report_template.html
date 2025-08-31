@@ -1,0 +1,68 @@
+<!-- templates/report_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retro-Risk Report</title>
+    <link rel="stylesheet" href="report_style.css">
+</head>
+<body>
+    <div class="cover-page">
+        <div class="logo">
+            <!-- In a real scenario, this would be the Nova Credit SVG logo -->
+            <h1 class="logo-text">Nova Credit</h1>
+        </div>
+        <h1 class="report-title">Retro-Risk Report</h1>
+        <h2 class="prospect-name">Prepared for: {{ results.prospect_name }}</h2>
+        <p class="report-date">{{ current_date }}</p>
+        <div class="confidential-notice">
+            CONFIDENTIAL & PROPRIETARY
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="page-break"></div>
+
+    <div class="page">
+        <h1 class="page-title">Executive Summary</h1>
+        <p class="intro-text">
+            This report presents a retro-simulation analysis of the historical loan application portfolio provided by {{ results.prospect_name }}. The analysis was conducted using Nova Credit's Cash Atlas™ underwriting model to identify creditworthy applicants who may have been declined by traditional underwriting methods.
+        </p>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">{{ results.decisions_flipped_to_approve }}</div>
+                <div class="metric-label">Potential New Approvals</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">{{ "%.2f"|format(results.potential_lift_percentage) }}%</div>
+                <div class="metric-label">Portfolio Approval Lift</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">${{ "{:,.0f}".format(results.total_value_of_newly_approved_loans) }}</div>
+                <div class="metric-label">Value of New Originations</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Analysis Overview</h2>
+        <p>Out of the <strong>{{ results.total_applications_processed }}</strong> declined applications analyzed, our model identified <strong>{{ results.decisions_flipped_to_approve }}</strong> applicants as creditworthy. This represents a potential <strong>{{ "%.2f"|format(results.potential_lift_percentage) }}% lift</strong> in loan approvals from this cohort, unlocking an estimated <strong>${{ "{:,.0f}".format(results.total_value_of_newly_approved_loans) }}</strong> in additional loan originations.</p>
+
+        <div class="chart-container">
+            <img src="{{ chart_image }}" alt="Portfolio Lift Analysis Chart">
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="page">
+        <h1 class="page-title">Methodology & Disclaimer</h1>
+        <h2 class="section-title">Methodology</h2>
+        <p>This analysis was performed using a representative version of Nova Credit's Cash Atlas™ cash flow underwriting model. The model analyzes thousands of data points from consumer-permissioned bank transaction data to generate a highly predictive assessment of credit risk and affordability, independent of traditional credit bureau scores.</p>
+
+        <h2 class="section-title">Disclaimer</h2>
+        <p>This report is for informational purposes only and is based solely on the data provided by {{ results.prospect_name }}. The results are a simulation and do not constitute a guarantee of future performance or a formal offer of credit. The accuracy of this analysis is dependent on the accuracy and completeness of the provided historical data. All data provided for this analysis is handled in accordance with our strict data security and privacy policies and is securely purged after the engagement.</p>
+    </div>
+
+</body>
+</html>

@@ -32,6 +32,7 @@ poetry install
 ```bash
 poetry run python -m src.main \
     --input-file sample_data/sample_portfolio.csv \
+    --output-file sample_output/ACME_Retro_Report.pdf \
     --prospect-name "ACME Financial"
 ```
 
