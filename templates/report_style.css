@@ -1,14 +1,15 @@
 /* templates/report_style.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+/* --- General Styles --- */
 body {
     font-family: 'Inter', sans-serif;
-    color: #333;
     line-height: 1.6;
+    color: #333;
 }
 
 .page {
-    padding: 2.5cm;
+    padding: 10px;
 }
 
 .page-break {
@@ -17,77 +18,97 @@ body {
 
 /* --- Cover Page --- */
 .cover-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    gap: 30px;
+    min-height: 100vh;
+    padding: 3cm 2cm;
+    box-sizing: border-box;
     text-align: center;
     background-color: #f8f9fa;
 }
 
-.logo-text {
-    font-size: 28px;
-    font-weight: 700;
-    color: #0c3d7e; /* Nova Credit primary blue */
-    margin-bottom: 2cm;
+/*
+  The following container divs are set to `display: contents` so that their direct children
+  (the h1, h2, etc.) can be treated as direct flex items of the `.cover-page` container.
+  This allows for a single-line horizontal layout with controlled ordering.
+*/
+.report-header,
+.company-branding,
+.report-meta {
+    display: contents;
 }
 
-.report-title {
-    font-size: 48px;
-    font-weight: 700;
-    color: #0c3d7e;
+.report-title,
+.company-name,
+.prospect-name,
+.report-date {
+    align-items: center;
+    justify-content: center;
     margin: 0;
 }
 
+.company-name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #0c3d7e; /* Nova Credit primary blue */
+}
+
+.report-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0c3d7e;
+}
+
 .prospect-name {
-    font-size: 24px;
+    font-size: 14px;
     font-weight: 400;
     color: #555;
-    margin-top: 0.5cm;
 }
 
 .report-date {
-    font-size: 16px;
+    font-size: 14px;
+    text-align: center;
     color: #777;
-    margin-top: 5cm;
 }
 
 .confidential-notice {
     position: absolute;
-    bottom: 1.5cm;
-    font-size: 12px;
-    color: #999;
+    bottom: 2cm;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
     letter-spacing: 1px;
+    color: #999;
 }
 
 
 /* --- Content Pages --- */
 .page-title {
+    padding-bottom: 10px;
+    margin-bottom: 1cm;
     font-size: 32px;
     font-weight: 700;
     color: #0c3d7e;
     border-bottom: 2px solid #2a6ed4;
-    padding-bottom: 10px;
-    margin-bottom: 1cm;
 }
 
 .section-title {
+    margin-bottom: 0.5cm;
     font-size: 20px;
     font-weight: 600;
     color: #333;
-    margin-top: 1.2cm;
-    margin-bottom: 0.5cm;
 }
 
 .intro-text {
-    font-size: 16px;
     margin-bottom: 1cm;
+    font-size: 16px;
 }
 
 p {
-    font-size: 14px;
     margin-bottom: 0.5cm;
+    font-size: 14px;
 }
 
 /* --- Metrics Grid --- */
@@ -100,34 +121,36 @@ p {
 
 .metric-card {
     flex: 1;
+    padding: 20px;
+    text-align: center;
     background-color: #f8f9fa;
     border: 1px solid #e9ecef;
     border-left: 5px solid #2a6ed4;
-    padding: 20px;
-    text-align: center;
 }
 
 .metric-value {
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     color: #0c3d7e;
 }
 
 .metric-label {
-    font-size: 14px;
-    color: #555;
     margin-top: 5px;
+    font-size: 13px;
+    color: #555;
 }
 
 /* --- Chart --- */
 .chart-container {
+    margin: 1cm auto; /* Center the container with automatic horizontal margins */
     text-align: center;
-    margin-top: 1cm;
 }
 
 .chart-container img {
     max-width: 100%;
+    max-height: 8cm; /* Set a maximum height for the chart */
     height: auto;
+    padding: 5px;
     border: 1px solid #ddd;
-    padding: 10px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }

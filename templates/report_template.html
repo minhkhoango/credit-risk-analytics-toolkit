@@ -8,26 +8,18 @@
 </head>
 <body>
     <div class="cover-page">
-        <div class="logo">
-            <!-- In a real scenario, this would be the Nova Credit SVG logo -->
-            <h1 class="logo-text">Nova Credit</h1>
-        </div>
-        <h1 class="report-title">Retro-Risk Report</h1>
-        <h2 class="prospect-name">Prepared for: {{ results.prospect_name }}</h2>
+        <h1 class="company-name" style="margin-bottom: 200px;">Nova Credit</h1>
+        <h2 class="report-title" style="margin-bottom: 200px;">Retro-Risk Report</h2>
+        <h3 class="prospect-name" style="margin-bottom: 10px;">Prepared for: {{ results.prospect_name }}</h3>
         <p class="report-date">{{ current_date }}</p>
-        <div class="confidential-notice">
-            CONFIDENTIAL & PROPRIETARY
-        </div>
     </div>
-
-    <div class="page-break"></div>
 
     <div class="page-break"></div>
 
     <div class="page">
         <h1 class="page-title">Executive Summary</h1>
         <p class="intro-text">
-            This report presents a retro-simulation analysis of the historical loan application portfolio provided by {{ results.prospect_name }}. The analysis was conducted using Nova Credit's Cash Atlas™ underwriting model to identify creditworthy applicants who may have been declined by traditional underwriting methods.
+            This report presents a retro-simulation analysis of the historical loan application portfolio provided by {{ results.prospect_name }}. The analysis was conducted using Nova Credit's Cash Atlas™ underwriting model.
         </p>
 
         <div class="metrics-grid">
@@ -46,7 +38,7 @@
         </div>
 
         <h2 class="section-title">Analysis Overview</h2>
-        <p>Out of the <strong>{{ results.total_applications_processed }}</strong> declined applications analyzed, our model identified <strong>{{ results.decisions_flipped_to_approve }}</strong> applicants as creditworthy. This represents a potential <strong>{{ "%.2f"|format(results.potential_lift_percentage) }}% lift</strong> in loan approvals from this cohort, unlocking an estimated <strong>${{ "{:,.0f}".format(results.total_value_of_newly_approved_loans) }}</strong> in additional loan originations.</p>
+        <p>Out of {{ results.total_applications_processed }} declined applications analyzed, our model identified {{ results.decisions_flipped_to_approve }} applicants as creditworthy. This represents a {{ "%.2f"|format(results.potential_lift_percentage) }}% lift in loan approvals, unlocking ${{ "{:,.0f}".format(results.total_value_of_newly_approved_loans) }} in additional loan originations.</p>
 
         <div class="chart-container">
             <img src="{{ chart_image }}" alt="Portfolio Lift Analysis Chart">
@@ -58,10 +50,10 @@
     <div class="page">
         <h1 class="page-title">Methodology & Disclaimer</h1>
         <h2 class="section-title">Methodology</h2>
-        <p>This analysis was performed using a representative version of Nova Credit's Cash Atlas™ cash flow underwriting model. The model analyzes thousands of data points from consumer-permissioned bank transaction data to generate a highly predictive assessment of credit risk and affordability, independent of traditional credit bureau scores.</p>
+        <p>This analysis was performed using Nova Credit's Cash Atlas™ cash flow underwriting model. The model analyzes consumer-permissioned bank transaction data to generate predictive credit risk assessments.</p>
 
         <h2 class="section-title">Disclaimer</h2>
-        <p>This report is for informational purposes only and is based solely on the data provided by {{ results.prospect_name }}. The results are a simulation and do not constitute a guarantee of future performance or a formal offer of credit. The accuracy of this analysis is dependent on the accuracy and completeness of the provided historical data. All data provided for this analysis is handled in accordance with our strict data security and privacy policies and is securely purged after the engagement.</p>
+        <p>This report is for informational purposes only and is based on data provided by {{ results.prospect_name }}. Results are simulated and do not guarantee future performance. All data is handled securely and purged after analysis completion.</p>
     </div>
 
 </body>
