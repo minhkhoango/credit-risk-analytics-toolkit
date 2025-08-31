@@ -1,61 +1,41 @@
-# Project Killshot: Credit Risk Analytics Toolkit
+# Credit Risk Analytics Toolkit
 
-**Mission:** To build a high-impact, internal tool that allows Nova Credit's Solutions Engineering team to produce a "Retro-Risk Report" for enterprise prospects, dramatically shortening the sales cycle by quantifying the value of the Cash Atlas™ underwriting model on the prospect's own data.
+**Mission:** Internal tool for Nova Credit's Solutions Engineering team to generate "Retro-Risk Reports" for enterprise prospects, quantifying the value of Cash Atlas™ underwriting model on prospect data.
 
-**Overview**
-This repository contains the "Concierge MVP" for the Validation Suite. This is not a customer-facing product but a powerful internal tool. It takes a prospect's historical portfolio of declined loans (as a CSV file) and generates a professional, data-driven PDF report that highlights the precise revenue and customer segments they are missing.
-This tool is the "painkiller" for the "Underwriter's Dilemma"—it replaces a costly, months-long validation study with a fast, data-backed analysis, turning skepticism into urgency.
+## Overview
+This CLI tool processes a prospect's historical portfolio of declined loans (CSV) and generates a professional PDF report highlighting revenue opportunities and customer segments they're missing. It replaces costly validation studies with fast, data-backed analysis.
 
----
+## Security & Data Handling
 
-### Security & Data Handling: A Pre-Mortem
+### Architecture
+- **CLI-based:** No web server, no open ports, no public attack surface
+- **Stateless:** Processes data in-memory, no persistent datastores
+- **Local processing:** Runs on credentialed Solutions Engineer's corporate device
 
-Security is not an afterthought; it is the foundation of this tool's credibility. The following outlines the data handling workflow, designed to meet the rigorous standards of a Tier-1 fintech environment.
+### Data Workflow
+1. **Ingestion:** Prospect uploads anonymized CSV to segregated SFTP folder
+2. **Processing:** Solutions Engineer downloads and processes locally
+3. **Purge:** Input file deleted within 24 hours of report generation
 
-#### 1. The Principle of Least Privilege
-The architecture is designed to minimize its security footprint by design.
+## Getting Started
 
-* **No Public-Facing Infrastructure:** The tool is a CLI script, not a web server. It has no open ports and no public attack surface.
-* **No Persistent Datastores:** The script processes data in-memory and is designed to be stateless. It does not connect to or require a database.
-* **No Customer UI:** By eliminating a self-service portal, we eliminate all risks associated with user authentication, session management, and web application vulnerabilities.
+### Prerequisites
+- Python 3.11+
+- Poetry
 
-#### 2. Proposed Secure Data Handling Workflow
-* **Data Ingestion:** The customer prospect will be provisioned access to a specific, segregated folder on an existing corporate SFTP server. This is the sole entry point for data.
-* **Data In-Transit:** All data transfer over SFTP is secured with end-to-end encryption (e.g., SSH File Transfer Protocol).
-* **Data At-Rest:** The CSV file is protected by the existing at-rest encryption and access control policies of the corporate file server.
-* **Processing:** A credentialed Solutions Engineer, on a corporate-managed device, will pull the file to their local machine for processing. The script runs locally. The script does not need to access any other internal systems or APIs.
-* **Data Purge Policy:** The input CSV file must be securely deleted from both the SFTP server and the local machine within 24 hours of the Retro-Risk Report.pdf being successfully generated and delivered. This is a critical data minimization step.
-
-#### 3. Key Security Considerations
-* **Personally Identifiable Information (PII):** The process requires that the prospect provide an anonymized or tokenized dataset. The `RUNBOOK.md` (to be created in Sprint 2) will contain explicit instructions on how to prepare the data.
-* **Dependency Management:** The project uses poetry to lock dependencies, ensuring deterministic and secure builds. Regular vulnerability scanning via Snyk or Dependabot is recommended.
-
----
-
-### Getting Started (Sprint 1)
-
-This project uses Poetry for dependency management.
-
-#### 1. Installation
-First, ensure you have Python 3.11+ and Poetry installed. Then, from the project root:
+### Installation
 ```bash
-# Install the project dependencies from the lock file
 poetry install
 ```
 
-#### 2. Running the Simulation
-The Sprint 1 goal is to run the core simulation engine via the command-line interface and see the analytical results printed to the console.
-
-A sample data file is provided at sample_data/sample_portfolio.csv.
+### Usage
 ```bash
-# Run the simulation on the sample portfolio
-poetry run python -m src.main process-portfolio \
+poetry run python -m src.main \
     --input-file sample_data/sample_portfolio.csv \
     --prospect-name "ACME Financial"
 ```
 
-#### 3. Expected Output
-After running the command, you should see a dictionary printed to your console with the results of the analysis, similar to this:
+### Expected Output
 ```json
 {
     "prospect_name": "ACME Financial",
