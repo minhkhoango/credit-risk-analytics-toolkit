@@ -38,7 +38,10 @@ body {
     display: contents;
 }
 
-.report-title,
+.report-title {
+    margin-bottom: 150px;
+}
+
 .company-name,
 .prospect-name,
 .report-date {
@@ -48,6 +51,7 @@ body {
 }
 
 .company-name {
+    margin-bottom: 150px;
     font-size: 18px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -62,6 +66,7 @@ body {
 }
 
 .prospect-name {
+    margin-bottom: 10px;
     font-size: 14px;
     font-weight: 400;
     color: #555;
