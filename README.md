@@ -5,6 +5,18 @@
 ## Overview
 This CLI tool processes a prospect's historical portfolio of declined loans (CSV) and generates a professional PDF report highlighting revenue opportunities and customer segments they're missing. It replaces costly validation studies with fast, data-backed analysis.
 
+## Key Features
+
+### PDF Report Generation
+The toolkit automatically generates professional, branded PDF reports that include:
+- **Executive Summary:** High-level metrics and business impact
+- **Portfolio Lift Analysis:** Visual charts showing potential approval increases
+- **Revenue Opportunity:** Quantified value of newly approved loans
+- **Customer Segment Insights:** Analysis of which segments would benefit most
+- **Professional Formatting:** Clean, enterprise-ready presentation
+
+The PDF reports are designed for direct sharing with prospects and stakeholders, providing compelling visual evidence of Cash Atlas™ value proposition.
+
 ## Security & Data Handling
 
 ### Architecture
@@ -36,7 +48,13 @@ poetry run python -m src.main \
     --prospect-name "ACME Financial"
 ```
 
-### Expected Output
+### Output
+The tool generates two types of output:
+
+1. **Console Output:** Real-time processing status and final metrics
+2. **PDF Report:** Professional report saved to the specified output path
+
+#### Console Output Example
 ```json
 {
     "prospect_name": "ACME Financial",
@@ -47,3 +65,10 @@ poetry run python -m src.main \
     "average_loan_value_of_lifted_apps": 30000.0
 }
 ```
+
+#### PDF Report Features
+- **Branded Design:** Nova Credit styling and professional layout
+- **Interactive Charts:** Visual representation of portfolio lift analysis
+- **Executive Summary:** Key metrics and business impact highlights
+- **Detailed Analysis:** Comprehensive breakdown of simulation results
+- **Ready for Presentation:** Enterprise-grade formatting for stakeholder meetings
